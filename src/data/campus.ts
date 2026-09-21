@@ -76,5 +76,5 @@ export const preparationTasks = [
 ];
 
 export function companyFor(name: string) {
-  return companies.find((company) => company.name === name) ?? companies[0];
+  return companies.find((company) => company.name === name) ?? { name, initials: name.slice(0, 1), industry: "Technology", drives: 0, experiences: 0, questions: 0, tone: "neutral" as const };
 }
