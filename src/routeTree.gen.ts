@@ -13,6 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompaniesRouteImport } from './routes/companies'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DrivesRouteImport } from './routes/drives'
+import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as PreparationRouteImport } from './routes/preparation'
+import { Route as DrivesMicrosoft2026RouteImport } from './routes/drives.microsoft-2026'
+import { Route as ExperiencesMicrosoftExampleRouteImport } from './routes/experiences.microsoft-example'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,39 +38,99 @@ const DrivesRoute = DrivesRouteImport.update({
   path: '/drives',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExperiencesRoute = ExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreparationRoute = PreparationRouteImport.update({
+  id: '/preparation',
+  path: '/preparation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrivesMicrosoft2026Route = DrivesMicrosoft2026RouteImport.update({
+  id: '/microsoft-2026',
+  path: '/microsoft-2026',
+  getParentRoute: () => DrivesRoute,
+} as any)
+const ExperiencesMicrosoftExampleRoute =
+  ExperiencesMicrosoftExampleRouteImport.update({
+    id: '/microsoft-example',
+    path: '/microsoft-example',
+    getParentRoute: () => ExperiencesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/companies': typeof CompaniesRoute
   '/dashboard': typeof DashboardRoute
-  '/drives': typeof DrivesRoute
+  '/drives': typeof DrivesRouteWithChildren
+  '/experiences': typeof ExperiencesRouteWithChildren
+  '/preparation': typeof PreparationRoute
+  '/drives/microsoft-2026': typeof DrivesMicrosoft2026Route
+  '/experiences/microsoft-example': typeof ExperiencesMicrosoftExampleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/companies': typeof CompaniesRoute
   '/dashboard': typeof DashboardRoute
-  '/drives': typeof DrivesRoute
+  '/drives': typeof DrivesRouteWithChildren
+  '/experiences': typeof ExperiencesRouteWithChildren
+  '/preparation': typeof PreparationRoute
+  '/drives/microsoft-2026': typeof DrivesMicrosoft2026Route
+  '/experiences/microsoft-example': typeof ExperiencesMicrosoftExampleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/companies': typeof CompaniesRoute
   '/dashboard': typeof DashboardRoute
-  '/drives': typeof DrivesRoute
+  '/drives': typeof DrivesRouteWithChildren
+  '/experiences': typeof ExperiencesRouteWithChildren
+  '/preparation': typeof PreparationRoute
+  '/drives/microsoft-2026': typeof DrivesMicrosoft2026Route
+  '/experiences/microsoft-example': typeof ExperiencesMicrosoftExampleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/companies' | '/dashboard' | '/drives'
+  fullPaths:
+    | '/'
+    | '/companies'
+    | '/dashboard'
+    | '/drives'
+    | '/experiences'
+    | '/preparation'
+    | '/drives/microsoft-2026'
+    | '/experiences/microsoft-example'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/companies' | '/dashboard' | '/drives'
-  id: '__root__' | '/' | '/companies' | '/dashboard' | '/drives'
+  to:
+    | '/'
+    | '/companies'
+    | '/dashboard'
+    | '/drives'
+    | '/experiences'
+    | '/preparation'
+    | '/drives/microsoft-2026'
+    | '/experiences/microsoft-example'
+  id:
+    | '__root__'
+    | '/'
+    | '/companies'
+    | '/dashboard'
+    | '/drives'
+    | '/experiences'
+    | '/preparation'
+    | '/drives/microsoft-2026'
+    | '/experiences/microsoft-example'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompaniesRoute: typeof CompaniesRoute
   DashboardRoute: typeof DashboardRoute
-  DrivesRoute: typeof DrivesRoute
+  DrivesRoute: typeof DrivesRouteWithChildren
+  ExperiencesRoute: typeof ExperiencesRouteWithChildren
+  PreparationRoute: typeof PreparationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,14 +163,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DrivesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/experiences': {
+      id: '/experiences'
+      path: '/experiences'
+      fullPath: '/experiences'
+      preLoaderRoute: typeof ExperiencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/preparation': {
+      id: '/preparation'
+      path: '/preparation'
+      fullPath: '/preparation'
+      preLoaderRoute: typeof PreparationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drives/microsoft-2026': {
+      id: '/drives/microsoft-2026'
+      path: '/microsoft-2026'
+      fullPath: '/drives/microsoft-2026'
+      preLoaderRoute: typeof DrivesMicrosoft2026RouteImport
+      parentRoute: typeof DrivesRoute
+    }
+    '/experiences/microsoft-example': {
+      id: '/experiences/microsoft-example'
+      path: '/microsoft-example'
+      fullPath: '/experiences/microsoft-example'
+      preLoaderRoute: typeof ExperiencesMicrosoftExampleRouteImport
+      parentRoute: typeof ExperiencesRoute
+    }
   }
 }
+
+interface DrivesRouteChildren {
+  DrivesMicrosoft2026Route: typeof DrivesMicrosoft2026Route
+}
+
+const DrivesRouteChildren: DrivesRouteChildren = {
+  DrivesMicrosoft2026Route: DrivesMicrosoft2026Route,
+}
+
+const DrivesRouteWithChildren =
+  DrivesRoute._addFileChildren(DrivesRouteChildren)
+
+interface ExperiencesRouteChildren {
+  ExperiencesMicrosoftExampleRoute: typeof ExperiencesMicrosoftExampleRoute
+}
+
+const ExperiencesRouteChildren: ExperiencesRouteChildren = {
+  ExperiencesMicrosoftExampleRoute: ExperiencesMicrosoftExampleRoute,
+}
+
+const ExperiencesRouteWithChildren = ExperiencesRoute._addFileChildren(
+  ExperiencesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompaniesRoute: CompaniesRoute,
   DashboardRoute: DashboardRoute,
-  DrivesRoute: DrivesRoute,
+  DrivesRoute: DrivesRouteWithChildren,
+  ExperiencesRoute: ExperiencesRouteWithChildren,
+  PreparationRoute: PreparationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
