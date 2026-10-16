@@ -1,18 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, SlidersHorizontal, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import {
+  ArrowRight,
+  Zap,
+  Sparkles,
+  BookOpen,
+  CheckCircle2,
+  Calendar,
+  Flame,
+  FileCode,
+  ShieldCheck,
+  MessageSquare,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DriveCard, ExperienceCard, SectionHeading } from "@/components/campus/shared";
-import { drives, experiences } from "@/data/campus";
+import { DriveCard, CompanyLogo } from "@/components/campus/shared";
+import { drives } from "@/data/campus";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Campus Prep — Placement Intelligence from Your Seniors" },
-      { name: "description", content: "Discover campus drives, student interview experiences, reported questions, and focused preparation resources for your university." },
+      { name: "description", content: "College-specific placement drives, reported interview questions, and senior tips — scannable in seconds." },
       { property: "og:title", content: "Campus Prep — Placement Intelligence from Your Seniors" },
-      { property: "og:description", content: "Real campus placement intelligence for college students preparing for placement season." },
+      { property: "og:description", content: "Crack campus placements with verified senior intelligence." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -21,192 +31,227 @@ export const Route = createFileRoute("/")({
 });
 
 function LandingPage() {
-  const [activeProgram, setActiveProgram] = useState("B.Tech CS");
-
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Hero Section */}
-      <section className="page-shell py-14 md:py-20">
+      {/* Visual Quick Hub Hero */}
+      <section className="page-shell pt-10 pb-8 sm:pt-14 sm:pb-10">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground shadow-2xs">
-            <span className="size-1.5 rounded-full bg-primary" />
-            XYZ University · Placement Cycle 2026–27
+            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+            XYZ University · Placement Cycle 2026–27 Live
           </div>
 
-          <h1 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl md:leading-[1.12]">
-            Your campus placement,<br />
-            prepared by your seniors.
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Crack Your Campus Drives.
           </h1>
 
-          <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
-            Company-specific placement intelligence, real student experiences, reported interview questions, and preparation resources — verified by previous student batches.
+          <p className="mt-3 max-w-xl text-base text-muted-foreground sm:text-lg">
+            Real interview rounds, reported questions, and senior tips — designed to prepare you in 48 hours without the noise.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Button size="lg" className="h-11 px-6 text-sm font-medium shadow-2xs" asChild>
-              <Link to="/companies">
-                Explore Companies <ArrowRight className="ml-1 size-4" />
+          {/* Quick Action Buttons */}
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Button size="lg" className="h-10 px-5 text-sm font-semibold shadow-xs" asChild>
+              <Link to="/drives">
+                Explore Active Drives <ArrowRight className="ml-1.5 size-4" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="h-11 px-6 text-sm font-medium border-border bg-surface hover:bg-muted" asChild>
-              <Link to="/dashboard">Get Started</Link>
+            <Button size="lg" variant="outline" className="h-10 px-5 text-sm font-semibold border-border bg-surface hover:bg-muted" asChild>
+              <Link to="/workspace">My Prep Checklist</Link>
+            </Button>
+            <Button size="lg" variant="ghost" className="h-10 px-4 text-sm font-medium text-primary" asChild>
+              <Link to="/contribute">+ Share My Experience</Link>
             </Button>
           </div>
         </div>
 
-        {/* Placement Statistics Strip */}
-        <div className="mt-14 rounded-lg border border-border bg-surface p-6 shadow-2xs">
-          <div className="grid grid-cols-2 gap-6 divide-y divide-border sm:grid-cols-4 sm:divide-x sm:divide-y-0">
-            <div className="sm:pr-4">
-              <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">12</p>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">Open Drives</p>
+        {/* 3 Glanceable Stat Cards */}
+        <div className="mt-10 grid grid-cols-3 gap-3 sm:gap-4">
+          <div className="rounded-xl border border-border bg-surface p-4 shadow-2xs">
+            <div className="flex items-center gap-2 text-primary">
+              <Zap className="size-4" />
+              <span className="text-xl font-bold text-foreground sm:text-2xl">12</span>
             </div>
-            <div className="pt-4 sm:pl-6 sm:pr-4 sm:pt-0">
-              <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">126</p>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">Senior Experiences</p>
+            <p className="mt-1 text-xs font-medium text-muted-foreground">Active Campus Drives</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4 shadow-2xs">
+            <div className="flex items-center gap-2 text-primary">
+              <FileCode className="size-4" />
+              <span className="text-xl font-bold text-foreground sm:text-2xl">318+</span>
             </div>
-            <div className="pt-4 sm:pl-6 sm:pr-4 sm:pt-0">
-              <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">318</p>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">Reported Questions</p>
+            <p className="mt-1 text-xs font-medium text-muted-foreground">Reported Questions</p>
+          </div>
+          <div className="rounded-xl border border-border bg-surface p-4 shadow-2xs">
+            <div className="flex items-center gap-2 text-primary">
+              <ShieldCheck className="size-4" />
+              <span className="text-xl font-bold text-foreground sm:text-2xl">100%</span>
             </div>
-            <div className="pt-4 sm:pl-6 sm:pt-0">
-              <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">3</p>
-              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">Eligible Programs</p>
-            </div>
+            <p className="mt-1 text-xs font-medium text-muted-foreground">Verified by Seniors</p>
           </div>
         </div>
       </section>
 
-      {/* Open for Your Program */}
-      <section className="border-y border-border bg-surface py-14">
+      {/* Active Campus Drives (Scannable Cards) */}
+      <section className="border-t border-border bg-surface/50 py-10">
         <div className="page-shell">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex items-center justify-between">
             <div>
-              <p className="eyebrow text-primary">Live Campus Recruitment</p>
-              <h2 className="section-title mt-1">Open for your program</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
-                B.Tech Computer Science · Class of 2027
-              </p>
+              <div className="flex items-center gap-2">
+                <Flame className="size-4 text-amber-500" />
+                <h2 className="text-lg font-bold text-foreground sm:text-xl">Urgent Placement Drives</h2>
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5">Upcoming assessments and interviews this week</p>
             </div>
-
-            {/* Filter controls */}
-            <div className="flex items-center gap-2">
-              {["B.Tech CS", "All Programs", "2026–27"].map((prog) => (
-                <button
-                  key={prog}
-                  type="button"
-                  onClick={() => setActiveProgram(prog)}
-                  className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-                    activeProgram === prog
-                      ? "bg-foreground text-background"
-                      : "border border-border bg-surface text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {prog}
-                </button>
-              ))}
-            </div>
+            <Button variant="ghost" size="sm" className="text-xs font-semibold text-primary" asChild>
+              <Link to="/drives">View all 12 drives →</Link>
+            </Button>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {drives.slice(0, 3).map((d) => (
               <DriveCard key={d.company + d.role} drive={d} compact />
             ))}
           </div>
-
-          <div className="mt-8 text-center sm:text-right">
-            <Link to="/drives" className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline">
-              View all active campus drives <ArrowRight className="size-3.5" />
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* How Campus Prep Works */}
-      <section id="how-it-works" className="page-shell py-16">
-        <SectionHeading
-          label="Workflow"
-          title="How Campus Prep works"
-          description="A structured approach to preparing for campus placement drives."
-        />
-
-        <div className="mt-8 grid gap-8 border-y border-border py-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
-          {[
-            ["01", "Discover", "Find companies recruiting for your program, eligibility criteria, and drive deadlines."],
-            ["02", "Learn", "Read verified student experiences, reported round details, and real interview questions."],
-            ["03", "Prepare", "Build your personalized preparation plan and contribute your own placement journey."],
-          ].map(([num, title, desc], idx) => (
-            <div key={num} className={`flex flex-col justify-between ${idx === 0 ? "md:pr-8" : idx === 1 ? "md:px-8" : "md:pl-8"}`}>
-              <div>
-                <span className="font-mono text-xs font-semibold tracking-wider text-primary">{num}</span>
-                <h3 className="mt-3 text-lg font-semibold text-foreground">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* From Your Seniors */}
-      <section className="border-y border-border bg-surface py-16">
-        <div className="page-shell">
-          <SectionHeading
-            label="From your seniors"
-            title="What the process was really like"
-            description="Real experiences shared by students from previous placement cycles."
-            action={
-              <Link to="/experiences" className="hidden text-xs font-semibold text-primary hover:underline sm:inline-flex items-center gap-1">
-                All experiences <ArrowRight className="size-3.5" />
-              </Link>
-            }
-          />
-
-          <div className="mt-8 grid gap-8 md:grid-cols-3 md:gap-10">
-            {experiences.slice(0, 3).map((e) => (
-              <ExperienceCard key={e.company + e.year} experience={e} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Placement Cycle Section */}
-      <section className="page-shell py-16">
-        <div className="rounded-xl border border-border bg-surface p-8">
-          <div className="grid gap-8 md:grid-cols-[1fr_2fr] md:items-center">
-            <div>
-              <p className="eyebrow text-primary">Placement Cycle</p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground">2026–27</h2>
-              <p className="mt-2 text-xs text-muted-foreground">Updated for current batch recruiting season.</p>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Supported Programs</p>
-              <div className="mt-3 flex flex-wrap gap-2.5">
-                {["B.Tech Computer Science", "M.Sc IT", "M.Sc Data Science", "B.Tech ECE"].map((prog) => (
-                  <span key={prog} className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground">
-                    <CheckCircle2 className="size-3.5 text-success" />
-                    {prog}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Final CTA */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-xl border border-border bg-surface p-8 md:flex-row md:items-center">
+      {/* 4 Fast Prep Topic Hubs */}
+      <section className="page-shell py-12">
+        <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-semibold tracking-tight text-foreground">Ready for your placement season?</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Explore companies, learn from previous students, and prepare with confidence.
-            </p>
+            <h2 className="text-lg font-bold text-foreground sm:text-xl">Fast Preparation Hubs</h2>
+            <p className="text-xs text-muted-foreground mt-0.5">Focus on high-frequency questions reported by seniors</p>
+          </div>
+          <Button variant="ghost" size="sm" className="text-xs font-semibold text-primary" asChild>
+            <Link to="/preparation">Question Vault →</Link>
+          </Button>
+        </div>
+
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <Link
+            to="/preparation"
+            className="group rounded-xl border border-border bg-surface p-4 shadow-2xs hover:border-primary/50 transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex size-9 items-center justify-center rounded-lg bg-blue-500/10 text-blue-600 mb-3">
+              <FileCode className="size-5" />
+            </div>
+            <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+              DSA & Coding
+            </h3>
+            <p className="mt-1 text-xs text-muted-foreground">Trees, Dynamic Programming, Sliding Window</p>
+            <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-primary">
+              142 Questions →
+            </span>
+          </Link>
+
+          <Link
+            to="/preparation"
+            className="group rounded-xl border border-border bg-surface p-4 shadow-2xs hover:border-primary/50 transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex size-9 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-600 mb-3">
+              <BookOpen className="size-5" />
+            </div>
+            <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+              Core CS Subjects
+            </h3>
+            <p className="mt-1 text-xs text-muted-foreground">OS Deadlocks, DBMS Indexing, Computer Networks</p>
+            <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-primary">
+              86 Questions →
+            </span>
+          </Link>
+
+          <Link
+            to="/preparation"
+            className="group rounded-xl border border-border bg-surface p-4 shadow-2xs hover:border-primary/50 transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex size-9 items-center justify-center rounded-lg bg-purple-500/10 text-purple-600 mb-3">
+              <Zap className="size-5" />
+            </div>
+            <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+              System Design
+            </h3>
+            <p className="mt-1 text-xs text-muted-foreground">LRU Cache, Scalability, Database Sharding</p>
+            <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-primary">
+              45 Questions →
+            </span>
+          </Link>
+
+          <Link
+            to="/preparation"
+            className="group rounded-xl border border-border bg-surface p-4 shadow-2xs hover:border-primary/50 transition-all hover:-translate-y-0.5"
+          >
+            <div className="flex size-9 items-center justify-center rounded-lg bg-amber-500/10 text-amber-600 mb-3">
+              <MessageSquare className="size-5" />
+            </div>
+            <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
+              HR & Project Defense
+            </h3>
+            <p className="mt-1 text-xs text-muted-foreground">STAR method, Resume deep-dive, Conflict answers</p>
+            <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-primary">
+              45 Scenarios →
+            </span>
+          </Link>
+        </div>
+      </section>
+
+      {/* Senior Wisdom Bites (Scannable Quotes) */}
+      <section className="border-t border-border bg-surface/50 py-10">
+        <div className="page-shell">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-foreground sm:text-xl">Top Senior Advice</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">Golden rules from seniors who cracked Day-1 companies</p>
+            </div>
+            <Button variant="ghost" size="sm" className="text-xs font-semibold text-primary" asChild>
+              <Link to="/experiences">All experiences →</Link>
+            </Button>
           </div>
 
-          <Button size="lg" className="h-10.5 px-5 text-sm font-medium" asChild>
-            <Link to="/companies">
-              Explore Companies <ArrowRight className="ml-1.5 size-4" />
-            </Link>
-          </Button>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-border bg-surface p-5 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <CompanyLogo name="Microsoft" size="sm" />
+                <div>
+                  <p className="text-xs font-semibold text-foreground">Aman S. · Placed at Microsoft SDE-1</p>
+                  <p className="text-[11px] text-muted-foreground">2025 Batch · CTC ₹45.5 LPA</p>
+                </div>
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-foreground/90 font-medium">
+                &ldquo;Don&apos;t memorize optimal solutions. For the OA, focus on clean code and handling edge cases (empty arrays, duplicates). In the interview, always vocalize your thought process before writing a single line of code.&rdquo;
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-border bg-surface p-5 shadow-2xs">
+              <div className="flex items-center gap-3">
+                <CompanyLogo name="Amazon" size="sm" />
+                <div>
+                  <p className="text-xs font-semibold text-foreground">Sneha R. · Placed at Amazon SDE</p>
+                  <p className="text-[11px] text-muted-foreground">2025 Batch · CTC ₹32.0 LPA</p>
+                </div>
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-foreground/90 font-medium">
+                &ldquo;Amazon takes Leadership Principles very seriously. Prepare 2 real stories for each principle using the STAR method. For DSA, master BFS/DFS and Binary Search variations.&rdquo;
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Footer CTA */}
+      <section className="page-shell py-12 text-center">
+        <div className="max-w-xl mx-auto rounded-2xl border border-border bg-surface p-8 shadow-2xs">
+          <h2 className="text-xl font-bold text-foreground">Placed recently? Help your juniors.</h2>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Takes less than 3 minutes to share your interview rounds and tips. Pay it forward to the next batch.
+          </p>
+          <div className="mt-5 flex justify-center gap-3">
+            <Button size="sm" className="font-semibold shadow-xs" asChild>
+              <Link to="/contribute">+ Share Interview Experience</Link>
+            </Button>
+            <Button size="sm" variant="outline" asChild>
+              <Link to="/companies">View All Companies</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </main>
